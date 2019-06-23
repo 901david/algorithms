@@ -13,20 +13,24 @@ class Node {
     }
   }
 }
-const preOrderBinaryTreeTraversal = rootNode => {
-  const nodes = [rootNode];
-  const values = [];
 
-  while (nodes.length !== 0) {
-    const node = nodes.pop();
-    if (node) {
-      values.push(node.val);
-      nodes.push(node.right);
-      nodes.push(node.left);
+const inorderTraversal = root => {
+  const results = [];
+  const stack = [];
+  let curr = root;
+
+  while (stack.length > 0 || curr != undefined) {
+    if (curr !== undefined) {
+      stack.push(curr);
+      curr = curr.left;
+    } else {
+      curr = stack.pop();
+      results.push(curr.val);
+      curr = curr.right;
     }
   }
 
-  return values;
+  return results;
 };
 
 const newTree = new Node(1);
@@ -35,5 +39,5 @@ newTree.addNode(3);
 newTree.left.addNode(4);
 newTree.left.addNode(5);
 
-console.log(preOrderBinaryTreeTraversal(newTree));
+console.log(inorderTraversal(newTree));
 console.log(newTree);
