@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/901david/algorithms#readme",
   "dependencies": {
-    "jest": "^24.8.0"
-  }
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {}
 }
