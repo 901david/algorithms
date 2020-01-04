@@ -1,30 +1,40 @@
-const buildMap = str =>
-  str.split("").reduce((map, char) => {
-    if (map.has(char)) map.set(char, map.get(char) + 1);
-    else map.set(char, 1);
-    return map;
-  }, new Map());
+const oneReplaceAway = (strA, strB) => {
+  let notMatched = false;
+  for (let i = 0; i < strA.length; i++) {
+    const charA = strA[i];
+    const charB = strB[i];
+    if (charA !== charB) {
+      if (notMatched) return false;
+      notMatched = true;
+    }
+  }
+  return true;
+};
+
+const oneEditAway = (short, long) => {
+  let indexOne = 0;
+  let indexTwo = 0;
+  while (indexOne < short.length && indexTwo < long.length) {
+    if (short[indexOne] !== long[indexTwo]) {
+      if (indexOne !== indexTwo) return false;
+      indexTwo++;
+    } else {
+      indexOne++;
+      indexTwo++;
+    }
+  }
+  return true;
+};
 
 const oneAway = (strA, strB) => {
-  const strAMapped = buildMap(strA);
-  const strBMapped = buildMap(strB);
-  strAMapped.forEach((value, key) => {
-    if (strBMapped.has(key)) {
-      const newVal = strBMapped.get(key) - strAMapped.get(key);
-      if (newVal === 0) {
-        strAMapped.delete(key);
-        strBMapped.delete(key);
-      } else if (newVal > 0) {
-        strAMapped.delete(key);
-        strBMapped.set(key, newVal);
-      } else {
-        strBMapped.delete(key);
-        strAMapped.set(key, newVal);
-      }
-    }
-  });
-  console.log(strAMapped, strBMapped);
-  return strAMapped.size > 1 || strBMapped.size > 1;
+  if (Math.abs(strA.length - strB.length) > 1) return false;
+  if (strA.length === strB.length) {
+    return oneReplaceAway(strA, strB);
+  }
+
+  const short = strA.length > strB.length ? strB : strA;
+  const long = strA.length > strB.length ? strA : strB;
+  return oneEditAway(short, long);
 };
 
 module.exports = oneAway;
