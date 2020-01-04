@@ -15,7 +15,7 @@ describe("Rotate Matrix", () => {
     expect(rotateMatrix(input)).toEqual(output);
   });
 
-  test.skip("it should return the correct values of a 90 degree rotated matrix when transformed in place", () => {
+  test("it should return the correct values of a 90 degree rotated matrix when transformed in place", () => {
     const input = [
       [1, 2, 3],
       [6, 7, 8],
