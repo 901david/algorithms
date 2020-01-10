@@ -6,6 +6,29 @@ class LinkedList {
     this.size = 1;
   }
 
+  getAt(index) {
+    if (index === 0) return this.head;
+    let current = this.head.next;
+    let countIndex = 1;
+    while (countIndex !== index && current.next) {
+      current = current.next;
+      countIndex++;
+    }
+    return current;
+  }
+
+  removeAt(index) {
+    if (index === 0) return this.head;
+    let current = this.head.next;
+    let countIndex = 1;
+    while (countIndex !== index && current.next) {
+      current = current.next;
+      countIndex++;
+    }
+    current.data = current.next.data;
+    current.next = current.next.next;
+  }
+
   add(data) {
     if (!this.head) {
       this.head = new Node(data);

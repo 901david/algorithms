@@ -18,6 +18,28 @@ describe("Linked List", () => {
     });
   });
 
+  describe("getAt method", () => {
+    test("should correctly return an element", () => {
+      const ll = new LinkedList(1);
+      ll.add(2);
+      ll.add(3);
+      ll.add(4);
+      expect(ll.getAt(2)).toEqual(ll.head.next.next);
+    });
+  });
+
+  describe("removeAt method", () => {
+    test("should correctly remove an element", () => {
+      const ll = new LinkedList(1);
+      ll.add(2);
+      ll.add(3);
+      ll.add(4);
+      ll.add(5);
+      ll.removeAt(2);
+      expect(ll.head.next.next.data).toEqual(4);
+    });
+  });
+
   test("Should generate a linked list with correct nodes", () => {
     const ll = new LinkedList(1);
     ll.add(2);
