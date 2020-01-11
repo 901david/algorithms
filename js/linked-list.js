@@ -2,8 +2,10 @@ const Node = require("./node");
 
 class LinkedList {
   constructor(data) {
-    this.head = new Node(data);
-    this.size = 1;
+    this.head = data !== undefined ? new Node(data) : undefined;
+    this.size = data !== undefined ? 1 : 0;
+    this.isLinkedList = true;
+    return this;
   }
 
   getAt(index) {
@@ -27,18 +29,23 @@ class LinkedList {
     }
     current.data = current.next.data;
     current.next = current.next.next;
+    return this;
   }
 
   add(data) {
+    const newData = data.isLinkedList ? data.head : new Node(data);
     if (!this.head) {
-      this.head = new Node(data);
+      this.head = newData;
+      return this;
     }
     let current = this.head;
     while (current.next) {
       current = current.next;
     }
-    current.next = new Node(data);
-    this.size++;
+    current.next = newData;
+    if (data.isLinkedList) this.size += data.size;
+    else this.size++;
+    return this;
   }
   remove() {
     if (this.size === 0) {
@@ -53,6 +60,7 @@ class LinkedList {
     }
     current.next = null;
     this.size--;
+    return this;
   }
 
   getAsArray() {
