@@ -52,6 +52,20 @@ describe("Linked List", () => {
     });
   });
 
+  describe("Equals method", () => {
+    test("Should correctly return when two lists are equal", () => {
+      const listOne = new LinkedList(1).add(2).add(3);
+      const listTwo = new LinkedList(1).add(2).add(3);
+      expect(listOne.equals(listTwo)).toEqual(true);
+    });
+
+    test("Should correctly return when two lists are not equal", () => {
+      const listOne = new LinkedList(1).add(2).add(3);
+      const listTwo = new LinkedList(1).add(2).add(4);
+      expect(listOne.equals(listTwo)).toEqual(false);
+    });
+  });
+
   test("Should generate a linked list with correct nodes", () => {
     const ll = new LinkedList(1);
     ll.add(2);

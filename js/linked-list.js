@@ -36,6 +36,7 @@ class LinkedList {
     const newData = data.isLinkedList ? data.head : new Node(data);
     if (!this.head) {
       this.head = newData;
+      this.size++;
       return this;
     }
     let current = this.head;
@@ -61,6 +62,20 @@ class LinkedList {
     current.next = null;
     this.size--;
     return this;
+  }
+
+  equals(LL) {
+    if (this.size !== LL.size) return false;
+    let currentOne = this.head;
+    let currentTwo = LL.head;
+
+    while (currentOne.next) {
+      if (currentOne.data !== currentTwo.data) return false;
+      currentOne = currentOne.next;
+      currentTwo = currentTwo.next;
+    }
+    if (currentOne.data !== currentTwo.data) return false;
+    return true;
   }
 
   getAsArray() {
