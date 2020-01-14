@@ -103,5 +103,22 @@ describe("Max Heap", () => {
       val = heap.extractMax();
       expect(val).toEqual(2);
     });
+    test("Should return undefined when no values present", () => {
+      const heap = new maxHeap();
+
+      let val = heap.extractMax();
+      expect(val).toEqual(undefined);
+    });
+
+    test("Should return correct values when extracting past what exists", () => {
+      const heap = new maxHeap(1);
+
+      let val = heap.extractMax();
+      expect(val).toEqual(1);
+      val = heap.extractMax();
+      expect(val).toEqual(undefined);
+      val = heap.extractMax();
+      expect(val).toEqual(undefined);
+    });
   });
 });
