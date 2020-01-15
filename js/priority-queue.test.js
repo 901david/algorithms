@@ -1,14 +1,14 @@
 const PriorityQueue = require("./priority-queue");
 
 describe("Priority Queue", () => {
-  test.skip("should instantiate priority queue with blank array", () => {
+  test("should instantiate priority queue with blank array", () => {
     const pq = new PriorityQueue();
     expect(pq.size).toEqual(0);
     expect(pq.queue.length).toEqual(0);
   });
-  test.skip("should instantiate priority queue correctly when data is provided", () => {});
+  test("should instantiate priority queue correctly when data is provided", () => {});
   describe("Enqueue", () => {
-    test.skip("should correctly enque an element when no elements present", () => {
+    test("should correctly enque an element when no elements present", () => {
       const pq = new PriorityQueue();
       const data = { data: "Helloo World", priority: 3 };
       pq.enqueue(data);
@@ -16,7 +16,7 @@ describe("Priority Queue", () => {
       expect(pq.queue.length).toEqual(1);
       expect(pq.queue[0].data).toEqual("Helloo World");
     });
-    test.skip("should correctly enque an element when multiple elements present", () => {
+    test("should correctly enque an element when multiple elements present", () => {
       const pq = new PriorityQueue();
       const dataOne = { data: "Helloo World", priority: 3 };
       const dataTwo = { data: "test", priority: 1 };
@@ -31,7 +31,7 @@ describe("Priority Queue", () => {
       expect(pq.queue[2].priority).toEqual(3);
     });
 
-    test.skip("should correctly enque an element when multiple elements present in a more complicated example", () => {
+    test("should correctly enque an element when multiple elements present in a more complicated example", () => {
       const pq = new PriorityQueue();
       const dataOne = { data: "test 3", priority: 3 };
       const dataTwo = { data: "test 1", priority: 1 };
@@ -86,7 +86,7 @@ describe("Priority Queue", () => {
         expect(pq.queue[0].priority).toEqual(1);
       });
 
-      test.skip("should correctly dequeue an element when called repeatedly with no items in queue", () => {
+      test("should correctly dequeue an element when called repeatedly with no items in queue", () => {
         const pq = new PriorityQueue();
         const dataOne = { data: "Helloo World", priority: 3 };
         pq.enqueue(dataOne);
