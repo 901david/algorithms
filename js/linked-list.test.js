@@ -89,10 +89,7 @@ describe("Linked List", () => {
   describe("isCircular method", () => {
     test("should return true if a list is circular", () => {
       const LLOne = new LinkedList(1).add(1).add(5);
-      console.log("hi", LLOne.getAt(1));
-      const newData = LLOne.getAt(1);
-      LLOne.add(newData);
-      console.log(LLOne.head);
+      LLOne.head.next.next.next = LLOne.head;
       expect(LLOne.isCircular()).toEqual(true);
     });
 

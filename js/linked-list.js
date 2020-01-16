@@ -57,6 +57,7 @@ class LinkedList {
     let current = this.head;
     while (current.next) {
       if (seen.has(current)) return true;
+      seen.add(current);
       current = current.next;
     }
     if (seen.has(current)) return true;
