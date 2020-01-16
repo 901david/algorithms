@@ -9,9 +9,34 @@ class HashTable {
   }
 
   set(key, val) {
-    if (this.keyMap[this._hash(key)] === undefined)
+    if (this.keyMap[this._hash(key)] === undefined) {
       this.keyMap[this._hash(key)] = [[key, val]];
-    else this.keyMap[this._hash(key)].push([key, val]);
+      return;
+    }
+    const replaceIndex = this.keyMap[this._hash(key)].findIndex(
+      ([testKey, _]) => testKey === key
+    );
+    if (replaceIndex > -1) {
+      this.keyMap[this._hash(key)][replaceIndex][1] = val;
+      return;
+    }
+
+    this.keyMap[this._hash(key)].push([key, val]);
+  }
+
+  delete(key) {
+    if (this.keyMap[this._hash(key)] === undefined) {
+      return;
+    }
+    const deleteIndex = this.keyMap[this._hash(key)].findIndex(
+      ([testKey, _]) => testKey === key
+    );
+    if (deleteIndex > -1) {
+      this.keyMap[this._hash(key)].splice(deleteIndex, 1);
+      if (this.keyMap[this._hash(key)].length === 0)
+        this.keyMap[this._hash(key)] = undefined;
+      return;
+    }
   }
 
   get(key) {

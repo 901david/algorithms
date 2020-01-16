@@ -34,11 +34,36 @@ describe("Hash Table", () => {
     });
   });
 
+  describe("delete method", () => {
+    test("should correctly delete key from keymap", () => {
+      const myHash = new HashTable();
+      myHash.set("red", 5);
+      myHash.delete("red");
+      expect(myHash.keyMap[myHash._hash("red")]).toEqual(undefined);
+    });
+
+    test("should correctly delete key from keymap when collisions have occurred", () => {
+      const myHash = new HashTable();
+      myHash.set("red", 5);
+      myHash.set("56", 10);
+      myHash.delete("56");
+      expect(myHash.get("56")).toEqual(undefined);
+    });
+  });
+
   describe("set method", () => {
     test("should correctly set position in keyMap", () => {
       const myHash = new HashTable();
       myHash.set("cyan", 5);
       expect(myHash.keyMap[myHash._hash("cyan")]).toEqual([["cyan", 5]]);
+    });
+
+    test("should reeplace a key that already exists", () => {
+      const myHash = new HashTable();
+      myHash.set("cyan", 5);
+      expect(myHash.keyMap[myHash._hash("cyan")]).toEqual([["cyan", 5]]);
+      myHash.set("cyan", 10);
+      expect(myHash.keyMap[myHash._hash("cyan")]).toEqual([["cyan", 10]]);
     });
 
     test("should correctly handle collisions in keyMap", () => {
