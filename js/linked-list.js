@@ -52,6 +52,17 @@ class LinkedList {
     return false;
   }
 
+  isCircular() {
+    const seen = new Set();
+    let current = this.head;
+    while (current.next) {
+      if (seen.has(current)) return true;
+      current = current.next;
+    }
+    if (seen.has(current)) return true;
+    return false;
+  }
+
   add(data) {
     const newData = data.isLinkedList ? data.head : new Node(data);
     if (!this.head) {

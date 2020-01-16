@@ -86,6 +86,22 @@ describe("Linked List", () => {
     });
   });
 
+  describe("isCircular method", () => {
+    test("should return true if a list is circular", () => {
+      const LLOne = new LinkedList(1).add(1).add(5);
+      console.log("hi", LLOne.getAt(1));
+      const newData = LLOne.getAt(1);
+      LLOne.add(newData);
+      console.log(LLOne.head);
+      expect(LLOne.isCircular()).toEqual(true);
+    });
+
+    test("should return false if a list is not circular", () => {
+      const LLOne = new LinkedList(1).add(1).add(5);
+      expect(LLOne.isCircular()).toEqual(false);
+    });
+  });
+
   test("Should generate a linked list with correct nodes", () => {
     const ll = new LinkedList(1);
     ll.add(2);
