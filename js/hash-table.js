@@ -22,6 +22,26 @@ class HashTable {
     else return undefined;
   }
 
+  keys() {
+    const results = [];
+    this.keyMap
+      .filter(bucket => bucket)
+      .forEach(bucket => {
+        results.push(...bucket.map(([key, _]) => key));
+      });
+    return results;
+  }
+
+  values() {
+    const results = [];
+    this.keyMap
+      .filter(bucket => bucket)
+      .forEach(bucket => {
+        results.push(...bucket.map(([_, val]) => val));
+      });
+    return results;
+  }
+
   _hash(key) {
     let total = 0;
     let PRIME = 31;

@@ -16,6 +16,24 @@ describe("Hash Table", () => {
     });
   });
 
+  describe("keys method", () => {
+    test("should return keys", () => {
+      const myHash = new HashTable();
+      myHash.set("cyan", 5);
+      myHash.set("purple", 10);
+      expect(myHash.keys()).toEqual(["cyan", "purple"]);
+    });
+  });
+
+  describe("values method", () => {
+    test("should return values", () => {
+      const myHash = new HashTable();
+      myHash.set("cyan", 5);
+      myHash.set("purple", 10);
+      expect(myHash.values()).toEqual([5, 10]);
+    });
+  });
+
   describe("set method", () => {
     test("should correctly set position in keyMap", () => {
       const myHash = new HashTable();
