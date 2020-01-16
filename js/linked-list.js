@@ -32,6 +32,26 @@ class LinkedList {
     return this;
   }
 
+  isIntersectedBy(LinkedList) {
+    const seen = new Set();
+    const listToUse = this.size > LinkedList.size ? this : LinkedList;
+    const listToCheck = this.size > LinkedList.size ? LinkedList : this;
+    let current = listToUse.head;
+    while (current.next) {
+      seen.add(current);
+      current = current.next;
+    }
+    seen.add(current);
+
+    current = listToCheck.head;
+    while (current.next) {
+      if (seen.has(current)) return true;
+      current = current.next;
+    }
+    if (seen.has(current)) return true;
+    return false;
+  }
+
   add(data) {
     const newData = data.isLinkedList ? data.head : new Node(data);
     if (!this.head) {

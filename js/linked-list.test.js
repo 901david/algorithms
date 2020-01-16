@@ -66,6 +66,26 @@ describe("Linked List", () => {
     });
   });
 
+  describe("Intersected method", () => {
+    test("should return true if a list is intersected", () => {
+      const LLOne = new LinkedList(1).add(1).add(5);
+      const LLTwo = new LinkedList(1)
+        .add(5)
+        .add(7)
+        .add(LLOne);
+      expect(LLOne.isIntersectedBy(LLTwo)).toEqual(true);
+    });
+
+    test("should return false if a list is not intersected", () => {
+      const LLOne = new LinkedList(1).add(1).add(5);
+      const LLTwo = new LinkedList(1)
+        .add(5)
+        .add(7)
+        .add(8);
+      expect(LLOne.isIntersectedBy(LLTwo)).toEqual(false);
+    });
+  });
+
   test("Should generate a linked list with correct nodes", () => {
     const ll = new LinkedList(1);
     ll.add(2);
