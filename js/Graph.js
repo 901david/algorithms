@@ -24,9 +24,15 @@ class Graph {
     return this.adjacencyList[vertex];
   }
 
+  getNewEdgeList(vToFilter, vToBeFilteredOut) {
+    return this.adjacencyList[vToFilter].filter(
+      edge => edge !== vToBeFilteredOut
+    );
+  }
+
   removeEdge(V1, V2) {
-    this.adjacencyList[V1] = this.adjacencyList[V1].filter(edge => edge !== V2);
-    this.adjacencyList[V2] = this.adjacencyList[V2].filter(edge => edge !== V1);
+    this.adjacencyList[V1] = this.getNewEdgeList(V1, V2);
+    this.adjacencyList[V2] = this.getNewEdgeList(V2, V1);
   }
 
   removeVertex(V1) {
@@ -34,9 +40,7 @@ class Graph {
       throw new Error("Vertex provided does not exist");
     delete this.adjacencyList[V1];
     Object.keys(this.adjacencyList).forEach(V2 => {
-      this.adjacencyList[V2] = this.adjacencyList[V2].filter(
-        edge => edge !== V1
-      );
+      this.adjacencyList[V2] = this.getNewEdgeList(V2, V1);
     });
   }
 }
