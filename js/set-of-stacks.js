@@ -72,13 +72,7 @@ class SetOfStacks {
 
     /* Check if we are on the stack we care about */
     while (this.stackCount !== stackToLookAt + 1) {
-      while (
-        this.stackCount !== 0 &&
-        this.stacks[this.stackCount - 1].size !== 0
-      ) {
-        helper.push(this.stacks[this.stackCount - 1].pop());
-      }
-
+      this.stacks[this.stackCount - 1].emptyInto(helper);
       this.stacks.pop();
       this.stackCount--;
     }

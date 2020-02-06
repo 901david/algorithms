@@ -76,4 +76,44 @@ describe("Stack Class", () => {
       expect(val).toEqual(undefined);
     });
   });
+
+  describe("EmptyInto Method", () => {
+    test("it should empty a Stack and return a new stack reversed", () => {
+      const myStack = new Stack();
+      myStack.push(6);
+      myStack.push(7);
+      myStack.push(8);
+      myStack.push(9);
+      const newListReversed = myStack.emptyInto();
+      expect(newListReversed.stack[0]).toEqual(9);
+      expect(newListReversed.stack[1]).toEqual(8);
+      expect(newListReversed.stack[2]).toEqual(7);
+      expect(newListReversed.stack[3]).toEqual(6);
+    });
+
+    test("it should empty a original Stack", () => {
+      const myStack = new Stack();
+      myStack.push(6);
+      myStack.push(7);
+      myStack.push(8);
+      myStack.push(9);
+      const newListReversed = myStack.emptyInto();
+      expect(myStack.size).toEqual(0);
+    });
+
+    test("it should empty into another stack if passed in", () => {
+      const myStack = new Stack();
+      myStack.push(6);
+      myStack.push(7);
+      const myOtherStack = new Stack();
+      myOtherStack.push(8);
+      myOtherStack.push(9);
+      myOtherStack.emptyInto(myStack);
+      expect(myStack.stack[0]).toEqual(6);
+      expect(myStack.stack[1]).toEqual(7);
+      expect(myStack.stack[2]).toEqual(9);
+      expect(myStack.stack[3]).toEqual(8);
+      expect(myOtherStack.size).toEqual(0);
+    });
+  });
 });
