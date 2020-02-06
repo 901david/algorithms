@@ -28,6 +28,7 @@ class Graph {
     this.adjacencyList[V1] = this.adjacencyList[V1].filter(edge => edge !== V2);
     this.adjacencyList[V2] = this.adjacencyList[V2].filter(edge => edge !== V1);
   }
+
   removeVertex(V1) {
     if (!this.vertexExists(V1))
       throw new Error("Vertex provided does not exist");
@@ -37,7 +38,6 @@ class Graph {
         edge => edge !== V1
       );
     });
-    console.log(this.adjacencyList);
   }
 }
 
