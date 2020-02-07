@@ -1,4 +1,5 @@
 const Graph = require("./Graph");
+const { PriorityQueueMin } = require("./priority-queue");
 
 class WeightedGraphNode {
   constructor(val, weight) {
@@ -28,6 +29,49 @@ class WeightedGraph extends Graph {
       throw new Error("Vertex provided does not exist");
     this.adjacencyList[V1].push(new WeightedGraphNode(V2, weight));
     this.adjacencyList[V2].push(new WeightedGraphNode(V1, weight));
+  }
+
+  buildInitialShortestPathState(start) {
+    const distances = new Map();
+    const nodes = new PriorityQueueMin();
+    const previous = new Map();
+
+    for (const vertex in this.adjacencyList) {
+      if (vertex === start) {
+        distances.set(vertex, 0);
+        nodes.enqueue({ data: vertex, priority: 0 });
+      } else {
+        distances.set(vertex, Infinity);
+        nodes.enqueue({ data: vertex, priority: Infinity });
+      }
+      previous.set(vertex, null);
+    }
+    return { distances, nodes, previous };
+  }
+
+  findShortestPath(start, end) {
+    const { nodes, distances, previous } = this.buildInitialShortestPathState(
+      start
+    );
+
+    while (nodes.size !== 0) {
+      const node = nodes.dequeue();
+      const { data: smallest } = node;
+      if (smallest === end) {
+        return distances.get(end);
+      }
+      if (smallest || distances.get(smallest) !== Infinity) {
+        for (let neighbor in this.adjacencyList[smallest]) {
+          const nextNode = this.adjacencyList[smallest][neighbor];
+          const possible = distances.get(smallest) + nextNode.weight;
+          if (possible < distances.get(nextNode.val)) {
+            distances.set(nextNode.val, possible);
+            previous.set(nextNode.val, smallest);
+            nodes.enqueue({ data: nextNode.val, priority: possible });
+          }
+        }
+      }
+    }
   }
 }
 

@@ -160,24 +160,8 @@ describe("WeightedGraph class", () => {
       }).toThrow(new Error("Vertex provided does not exist"));
     });
   });
-
-  describe.skip("DFSTraversalRecursive", () => {
-    test("should visit each node one time in  correct order", () => {
-      const myGraph = new WeightedGraph();
-      myGraph.addVertex(5);
-      myGraph.addVertex(6);
-      myGraph.addVertex(7);
-      myGraph.addEdges(5, 6, 90);
-      myGraph.addEdges(7, 5, 50);
-      myGraph.addEdges(6, 7, 30);
-      expect(myGraph.DFSTraversalRecursive(5)).toEqual([
-        { val: 5, weight: 0 },
-        { val: 6, weight: 90 },
-        { val: 7, weight: 50 }
-      ]);
-    });
-
-    test("should visit each node one time in  correct order with a moore complicated example", () => {
+  describe("Dijkstras  Shortest Path", () => {
+    test("should return shortest path between two nodes", () => {
       const myGraph = new WeightedGraph();
       myGraph.addVertex("A");
       myGraph.addVertex("B");
@@ -186,38 +170,20 @@ describe("WeightedGraph class", () => {
       myGraph.addVertex("E");
       myGraph.addVertex("F");
 
-      myGraph.addEdges("A", "B");
-      myGraph.addEdges("A", "C");
-      myGraph.addEdges("B", "D");
-      myGraph.addEdges("C", "E");
-      myGraph.addEdges("D", "E");
-      myGraph.addEdges("D", "F");
-      myGraph.addEdges("E", "F");
-      expect(myGraph.DFSTraversalRecursive("A")).toEqual([
-        "A",
-        "B",
-        "D",
-        "E",
-        "C",
-        "F"
-      ]);
-    });
-  });
-
-  describe.skip("DFSTraversalIterative", () => {
-    test("should visit each node one time in  correct order", () => {
-      const myGraph = new Graph();
-      myGraph.addVertex(5);
-      myGraph.addVertex(6);
-      myGraph.addVertex(7);
-      myGraph.addEdges(5, 6);
-      myGraph.addEdges(7, 5);
-      myGraph.addEdges(6, 7);
-      expect(myGraph.DFSTraversalIterative(5)).toEqual([5, 7, 6]);
+      myGraph.addEdges("A", "B", 4);
+      myGraph.addEdges("A", "C", 2);
+      myGraph.addEdges("B", "E", 3);
+      myGraph.addEdges("C", "D", 2);
+      myGraph.addEdges("C", "F", 4);
+      myGraph.addEdges("D", "E", 3);
+      myGraph.addEdges("D", "F", 1);
+      myGraph.addEdges("E", "F", 1);
+      var shortest = myGraph.findShortestPath("A", "E");
+      expect(shortest).toEqual(6);
     });
 
-    test("should visit each node one time in  correct order with a moore complicated example", () => {
-      const myGraph = new Graph();
+    test("should work  with different examples", () => {
+      const myGraph = new WeightedGraph();
       myGraph.addVertex("A");
       myGraph.addVertex("B");
       myGraph.addVertex("C");
@@ -225,53 +191,16 @@ describe("WeightedGraph class", () => {
       myGraph.addVertex("E");
       myGraph.addVertex("F");
 
-      myGraph.addEdges("A", "B");
-      myGraph.addEdges("A", "C");
-      myGraph.addEdges("B", "D");
-      myGraph.addEdges("C", "E");
-      myGraph.addEdges("D", "E");
-      myGraph.addEdges("D", "F");
-      myGraph.addEdges("E", "F");
-      expect(myGraph.DFSTraversalIterative("A")).toEqual([
-        "A",
-        "C",
-        "E",
-        "F",
-        "D",
-        "B"
-      ]);
-    });
-  });
-
-  describe.skip("Breadth First Search", () => {
-    test("should visit each node one time in  correct order", () => {
-      const myGraph = new Graph();
-      myGraph.addVertex(5);
-      myGraph.addVertex(6);
-      myGraph.addVertex(7);
-      myGraph.addEdges(5, 6);
-      myGraph.addEdges(7, 5);
-      myGraph.addEdges(6, 7);
-      expect(myGraph.BFS(5)).toEqual([5, 6, 7]);
-    });
-
-    test("should visit each node one time in  correct order with a moore complicated example", () => {
-      const myGraph = new Graph();
-      myGraph.addVertex("A");
-      myGraph.addVertex("B");
-      myGraph.addVertex("C");
-      myGraph.addVertex("D");
-      myGraph.addVertex("E");
-      myGraph.addVertex("F");
-
-      myGraph.addEdges("A", "B");
-      myGraph.addEdges("A", "C");
-      myGraph.addEdges("B", "D");
-      myGraph.addEdges("C", "E");
-      myGraph.addEdges("D", "E");
-      myGraph.addEdges("D", "F");
-      myGraph.addEdges("E", "F");
-      expect(myGraph.BFS("A")).toEqual(["A", "B", "C", "D", "E", "F"]);
+      myGraph.addEdges("A", "B", 4);
+      myGraph.addEdges("A", "C", 2);
+      myGraph.addEdges("B", "E", 3);
+      myGraph.addEdges("C", "D", 2);
+      myGraph.addEdges("C", "F", 4);
+      myGraph.addEdges("D", "E", 3);
+      myGraph.addEdges("D", "F", 1);
+      myGraph.addEdges("E", "F", 1);
+      var shortest = myGraph.findShortestPath("A", "F");
+      expect(shortest).toEqual(5);
     });
   });
 });
