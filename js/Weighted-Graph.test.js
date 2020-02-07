@@ -160,47 +160,4 @@ describe("WeightedGraph class", () => {
       }).toThrow(new Error("Vertex provided does not exist"));
     });
   });
-  describe("Dijkstras  Shortest Path", () => {
-    test("should return shortest path between two nodes", () => {
-      const myGraph = new WeightedGraph();
-      myGraph.addVertex("A");
-      myGraph.addVertex("B");
-      myGraph.addVertex("C");
-      myGraph.addVertex("D");
-      myGraph.addVertex("E");
-      myGraph.addVertex("F");
-
-      myGraph.addEdges("A", "B", 4);
-      myGraph.addEdges("A", "C", 2);
-      myGraph.addEdges("B", "E", 3);
-      myGraph.addEdges("C", "D", 2);
-      myGraph.addEdges("C", "F", 4);
-      myGraph.addEdges("D", "E", 3);
-      myGraph.addEdges("D", "F", 1);
-      myGraph.addEdges("E", "F", 1);
-      var shortest = myGraph.findShortestPath("A", "E");
-      expect(shortest).toEqual(6);
-    });
-
-    test("should work  with different examples", () => {
-      const myGraph = new WeightedGraph();
-      myGraph.addVertex("A");
-      myGraph.addVertex("B");
-      myGraph.addVertex("C");
-      myGraph.addVertex("D");
-      myGraph.addVertex("E");
-      myGraph.addVertex("F");
-
-      myGraph.addEdges("A", "B", 4);
-      myGraph.addEdges("A", "C", 2);
-      myGraph.addEdges("B", "E", 3);
-      myGraph.addEdges("C", "D", 2);
-      myGraph.addEdges("C", "F", 4);
-      myGraph.addEdges("D", "E", 3);
-      myGraph.addEdges("D", "F", 1);
-      myGraph.addEdges("E", "F", 1);
-      var shortest = myGraph.findShortestPath("A", "F");
-      expect(shortest).toEqual(5);
-    });
-  });
 });
