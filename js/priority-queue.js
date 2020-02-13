@@ -108,6 +108,10 @@ class PriorityQueueMax {
     this.bubbleDown();
     return val;
   }
+
+  peek() {
+    return this.queue[0];
+  }
 }
 
 /* A priority queue that orders priority with lower priority numbers being priooritized higher */
@@ -212,6 +216,10 @@ class PriorityQueueMin {
     this.size--;
     this.bubbleDown();
     return val;
+  }
+
+  peek() {
+    return this.queue[0];
   }
 }
 
