@@ -21,7 +21,7 @@ describe('List of depths', () => {
     expect(depths[0].equals(solution[0])).toEqual(true);
     expect(depths[1].equals(solution[1])).toEqual(true);
   });
-  test.skip('should return an array of linked lists which are teh depths of the binary search tree', () => {
+  test('should return an array of linked lists which are teh depths of the binary search tree', () => {
     const myTree = new BinarySearchTree();
     myTree.insert(50);
     myTree.insert(40);
@@ -33,7 +33,6 @@ describe('List of depths', () => {
     myTree.insert(20);
     myTree.insert(35);
     myTree.insert(80);
-    myTree.insert(75);
     const solution = [];
     const one = new LinkedList();
     one.add(50);
@@ -44,14 +43,13 @@ describe('List of depths', () => {
     solution.push(two);
     const three = new LinkedList();
     three.add(30);
-    three.add(35);
+    three.add(45);
     three.add(55);
     three.add(70);
     solution.push(three);
     const four = new LinkedList();
     four.add(20);
-    four.add(25);
-    four.add(75);
+    four.add(35);
     four.add(80);
     solution.push(four);
 
