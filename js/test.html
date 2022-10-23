@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./trie.js"></script>
+  </head>
+  <body>
+    <span>You could choose from these</span>
+    <div id="could-choose"></div>
+    <hr />
+    <span>I think you are trying to choose one of these</span>
+    <div id="are-choose"></div>
+    <input id="my-input" onchange="handleChange()" type="text" />
+    <script>
+      const myTrie = new TrieBase();
+      const testData = ['can', 'cat', 'catnip', 'bat'];
+      document.getElementById('could-choose').innerText = testData.join(',');
+      myTrie.insertAll(testData);
+
+      function handleChange(e) {
+        console.log('CALLED');
+        const value = e.target.value;
+        const searchResults = myTrie.search(e.target.value);
+        if (searchResults) {
+          const words = myTrie.getWordsAt(searchResults);
+          console.log('words', words);
+          document.getElementById('are-choose').innerText = words.join(',');
+        }
+      }
+    </script>
+  </body>
+</html>

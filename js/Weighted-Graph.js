@@ -1,5 +1,4 @@
-const Graph = require("./Graph");
-const { PriorityQueueMin } = require("./priority-queue");
+const Graph = require('./Graph');
 
 class WeightedGraphNode {
   constructor(val, weight) {
@@ -30,7 +29,7 @@ class WeightedGraph extends Graph {
 
   addEdges(V1, V2, weight) {
     if (!this.vertexExists(V1) || !this.vertexExists(V2))
-      throw new Error("Vertex provided does not exist");
+      throw new Error('Vertex provided does not exist');
     this.adjacencyList[V1].push(new WeightedGraphNode(V2, weight));
     this.adjacencyList[V2].push(new WeightedGraphNode(V1, weight));
   }
